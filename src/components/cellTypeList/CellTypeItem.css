@@ -1,0 +1,14 @@
+.cell-type-list-container li {
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(171, 197, 227, 0.574);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    margin-top: 2%;
+    height: 25%;
+    width: 95%;
+    border-radius: 10px;
+    margin-left: 2.5%;
+}
+.cell-type-item-contents {
+    margin: 1%;
+}
