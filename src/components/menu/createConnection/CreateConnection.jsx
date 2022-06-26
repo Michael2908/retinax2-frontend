@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { addConnection } from "../../../shared/services/CellService.jsx";
 import "./CreateConnection.css";
@@ -6,6 +7,13 @@ import "./CreateConnection.css";
 const CreateConnection = (props) => {
   const [myCell, setMyCell] = useState({ sourceCell: {}, destinationCell: {} });
   const addConnectionReq = useHttp(addConnection);
+  const { closeWindow } = props;
+
+  useEffect(() => {
+    if (addConnectionReq.status !== "COMPLETED" || addConnectionReq.error)
+      return;
+    closeWindow();
+  }, [addConnectionReq.status, addConnectionReq.error, closeWindow]);
 
   const stateHandler = (str, val) => {
     setMyCell((prevState) => {
@@ -44,7 +52,7 @@ const CreateConnection = (props) => {
     addConnectionReq.sendRequest(myCell);
   };
 
-  return props.trigger ? (
+  return (
     <form onSubmit={submitHandler}>
       <div className="main-popup">
         <div className="popup-inner">
@@ -94,12 +102,9 @@ const CreateConnection = (props) => {
               <button type="submit">Create Cell Type</button>
             </div>
           </div>
-          {props.childern}
         </div>
       </div>
     </form>
-  ) : (
-    ""
   );
 };
 

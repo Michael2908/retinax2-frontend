@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { addGraph } from "../../../shared/services/GraphService.jsx";
 import "./CreateSubGraph.css";
@@ -6,6 +7,12 @@ import "./CreateSubGraph.css";
 const CreateSubGraph = (props) => {
   const [myGraph, setMyGraph] = useState({});
   const addGraphReq = useHttp(addGraph);
+  const { closeWindow } = props;
+
+  useEffect(() => {
+    if (addGraphReq.status !== "COMPLETED" || addGraphReq.error) return;
+    closeWindow();
+  }, [addGraphReq.status, addGraphReq.error, closeWindow]);
 
   const stateHandler = (str, val) => {
     setMyGraph((prevState) => {
@@ -21,7 +28,7 @@ const CreateSubGraph = (props) => {
     addGraphReq.sendRequest(myGraph);
   };
 
-  return props.trigger ? (
+  return (
     <form onSubmit={submitHandler}>
       <div className="main-popup">
         <div className="popup-inner">
@@ -51,12 +58,9 @@ const CreateSubGraph = (props) => {
               <button type="submit">Create Sub Graph</button>
             </div>
           </div>
-          {props.childern}
         </div>
       </div>
     </form>
-  ) : (
-    ""
   );
 };
 

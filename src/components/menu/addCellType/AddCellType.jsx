@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { addCellType } from "../../../shared/services/CellService.jsx";
 import "./AddCellType.css";
@@ -6,6 +7,12 @@ import "./AddCellType.css";
 const AddCell = (props) => {
   const [myCell, setMyCell] = useState({ createFunctionRequest: {} });
   const addCellTypeReq = useHttp(addCellType);
+  const { closeWindow } = props;
+
+  useEffect(() => {
+    if (addCellTypeReq.status !== "COMPLETED" || addCellTypeReq.error) return;
+    closeWindow();
+  }, [addCellTypeReq.status, addCellTypeReq.error, closeWindow]);
 
   const stateHandler = (str, val) => {
     setMyCell((prevState) => {
@@ -32,10 +39,8 @@ const AddCell = (props) => {
     event.preventDefault();
     addCellTypeReq.sendRequest(myCell);
     setMyCell({ createFunctionRequest: {} });
-    props.setTrigger();
   };
 
-  if (!props.trigger) return <React.Fragment />;
   return (
     <form className="main-popup" onSubmit={submitHandler}>
       <div className="popup-inner">

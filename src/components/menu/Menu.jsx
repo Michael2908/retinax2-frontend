@@ -1,79 +1,39 @@
 import React, { useState } from "react";
-import { addCellInstance } from "../../shared/services/CellService.jsx";
-import AddcellInstance from "./addCellInstance/AddCellInstance.jsx";
 import AddCellType from "./addCellType/AddCellType.jsx";
 import CreateConnection from "./createConnection/CreateConnection.jsx";
 import CreateSubGraph from "./createSubGraph/CreateSubGraph.jsx";
 import "./Menu.css";
-import PopupItem from "./popupItem/PopupItem.jsx";
 
 function Menu() {
-  const [windowsStatus, setWindowsStatus] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [windowsStatus, setWindowsStatus] = useState([false, false, false]);
 
   const btnOnClickHandler = (event) => {
     const stateIndex = parseInt(event.currentTarget.name);
     if (windowsStatus[stateIndex]) {
-      const newStatus = [false, false, false, false];
+      const newStatus = [false, false, false];
       setWindowsStatus(newStatus);
       return;
     }
-    const newStatus = [false, false, false, false];
+    const newStatus = [false, false, false];
     newStatus[stateIndex] = true;
     setWindowsStatus(newStatus);
   };
 
-  const closeWindow = () => {
-    setWindowsStatus([false, false, false, false]);
-  };
+  const closeWindow = () => setWindowsStatus([false, false, false]);
 
   const getPopupComponent = () => {
-    // defaultValue,
-    // sendRequest,
-    // closeWindow,
-    // title,
-    // submitTitle,
-    // controls,
     const index = windowsStatus.findIndex((element) => element === true);
-    // <label>{control.label}</label>
-    // <input
-    //   type={control.input.type}
-    //   value={itemState[control.input.name]}
-    //   name={control.input.name}
-    //   onChange={stateHandler}
-    //   placeholder={control.input.placeholder}
     console.log(index);
-    if (index < 0) return <React.Fragment />;
-    // if (index === 0) {
-    //   return <PopupItem />;
-    // }
-    if (index === 1) {
-      const controls = [
-        {
-          label: "Cell Type Id:",
-          input: { name: "cellTypeId", placeholder: "Example: 27" },
-        },
-      ];
-      return (
-        <PopupItem
-          sendRequest={addCellInstance}
-          closeWindow={closeWindow}
-          title="Creating New Cell Instance"
-          submitTitle="Create Cell"
-          controls={controls}
-        />
-      );
+    switch (index) {
+      case 0:
+        return <AddCellType closeWindow={closeWindow} />;
+      case 1:
+        return <CreateConnection closeWindow={closeWindow} />;
+      case 2:
+        return <CreateSubGraph closeWindow={closeWindow} />;
+      default:
+        return <React.Fragment />;
     }
-    // if (index === 2) {
-    //   return <PopupItem />;
-    // }
-    // if (index === 3) {
-    //   return <PopupItem />;
-    // }
   };
 
   const popup = getPopupComponent();
@@ -86,12 +46,9 @@ function Menu() {
             Add Cell Type
           </button>
           <button name="1" onClick={btnOnClickHandler}>
-            Add Cell
-          </button>
-          <button name="2" onClick={btnOnClickHandler}>
             Connect Cells
           </button>
-          <button name="3" onClick={btnOnClickHandler}>
+          <button name="2" onClick={btnOnClickHandler}>
             Create Subgraph
           </button>
           <button>Delete Cell</button>
