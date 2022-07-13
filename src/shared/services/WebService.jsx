@@ -25,7 +25,7 @@ const sendRequest = async (sendType, url, dataToSend) => {
     body: JSON.stringify(dataToSend),
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json",
+      Accept: "*/*",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, GET, DELETE, PUT",
     },
@@ -37,17 +37,21 @@ const sendRequest = async (sendType, url, dataToSend) => {
       `Error #${err.status || 500}: ${err.message || "someting went wrong :("}`
     );
   }
-  return await response.json();
+  if (response.headers.get("content-type")?.includes("application/json"))
+    return await response.json();
+  return {};
 };
 
 export const GetData = async (dataName, queryData) => {
   const queryString = serialize(queryData);
   const URL = BE_URL + dataName + queryString;
+  console.log(URL);
   return await sendRequest("GET", URL, undefined);
 };
 
 export const AddData = async (dataToAdd, dataName) => {
   const URL = BE_URL + dataName;
+  console.log(URL);
   return await sendRequest("POST", URL, dataToAdd);
 };
 
@@ -59,4 +63,9 @@ export const UpdateData = async (dataName, dataToUpdate) => {
 export const DeleteData = async (dataName, dataToUpdate) => {
   const URL = BE_URL + dataName;
   return await sendRequest("DELETE", URL, dataToUpdate);
+};
+
+export const CloneData = async (dataName) => {
+  const URL = BE_URL + dataName;
+  return await sendRequest("POST", URL);
 };

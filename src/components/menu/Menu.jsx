@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import AddCellType from "./addCellType/AddCellType.jsx";
 import CreateConnection from "./createConnection/CreateConnection.jsx";
 import CreateSubGraph from "./createSubGraph/CreateSubGraph.jsx";
+import CloneSubGraph from "./cloneSubGraph/CloneSubGraph.jsx";
+import SimulateGraph from "./simulateGraph/SimulateGraph.jsx";
+import DeleteCell from "./deleteCell/DeleteCell.jsx";
 import "./Menu.css";
 
 function Menu() {
@@ -31,11 +34,16 @@ function Menu() {
         return <CreateConnection closeWindow={closeWindow} />;
       case 2:
         return <CreateSubGraph closeWindow={closeWindow} />;
+      case 3:
+        return <CloneSubGraph closeWindow={closeWindow} />;
+      case 4:
+        return <DeleteCell closeWindow={closeWindow} />;
+      case 5:
+        return <SimulateGraph closeWindow={closeWindow} />;
       default:
         return <React.Fragment />;
     }
   };
-
   const popup = getPopupComponent();
   return (
     <React.Fragment>
@@ -51,9 +59,15 @@ function Menu() {
           <button name="2" onClick={btnOnClickHandler}>
             Create Subgraph
           </button>
-          <button>Delete Cell</button>
-          <button>Load Graph</button>
-          <button>Save Graph</button>
+          <button name="3" onClick={btnOnClickHandler}>
+            Clone Subgraph
+          </button>
+          <button name="4" onClick={btnOnClickHandler}>
+            Delete Cell Instance
+          </button>
+          <button className="sim" name="5" onClick={btnOnClickHandler}>
+            Simulate
+          </button>
         </div>
       </div>
       {popup}

@@ -13,7 +13,10 @@ const CellTypeItem = (props) => {
     event.preventDefault();
     addCellInstanceReq.sendRequest(cellType.id);
   };
-  const deleteCellTypeClickHandler = (event) => {};
+  const deleteCellTypeClickHandler = (event) => {
+    event.preventDefault();
+    addCellInstanceReq.sendRequest(cellType.id);
+  };
 
   return (
     <li>

@@ -10,3 +10,8 @@
   width: 100%; /* you can use % */
   height: 100%;
 }
+
+iframe {
+  height: 100%;
+  width: 100%;
+}

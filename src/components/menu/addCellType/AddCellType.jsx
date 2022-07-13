@@ -37,6 +37,14 @@ const AddCell = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    // const myCell = {
+    //   name: "InputCell",
+    //   transformType: "INPUT_TO_ANALOG",
+    //   createFunctionRequest: {
+    //     expression: "x",
+    //     variables: ["x"],
+    //   },
+    // };
     addCellTypeReq.sendRequest(myCell);
     setMyCell({ createFunctionRequest: {} });
   };

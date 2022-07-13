@@ -1,31 +1,32 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
-import { addGraph } from "../../../shared/services/GraphService.jsx";
-import "./CreateSubGraph.css";
+import { cloneGraph } from "../../../shared/services/GraphService.jsx";
+import "./CloneSubGraph.css";
 
 const CreateSubGraph = (props) => {
   const [myGraph, setMyGraph] = useState({});
-  const addGraphReq = useHttp(addGraph);
+  const cloneGraphReq = useHttp(cloneGraph);
   const { closeWindow } = props;
 
   useEffect(() => {
-    if (addGraphReq.status !== "COMPLETED" || addGraphReq.error) return;
+    if (cloneGraphReq.status !== "COMPLETED" || cloneGraphReq.error) return;
     closeWindow();
-  }, [addGraphReq.status, addGraphReq.error, closeWindow]);
+  }, [cloneGraphReq.status, cloneGraphReq.error, closeWindow]);
 
-  const stateHandler = (str, val) => {
+  const stateHandler = (val) => {
     setMyGraph((prevState) => {
       return {
         ...prevState,
-        [str]: val,
+        val,
       };
     });
   };
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    addGraphReq.sendRequest(myGraph);
+    alert("I Clicked IT");
+    cloneGraphReq.sendRequest(myGraph.val);
   };
 
   return (
@@ -33,22 +34,13 @@ const CreateSubGraph = (props) => {
       <div className="main-popup">
         <div className="popup-inner">
           <div className="container">
-            <label>Create New Sub Graph</label>
-            <label>Sub Graph Name:</label>
-            <input
-              type="text"
-              value={myGraph.name}
-              onChange={(e) => {
-                stateHandler("name", e.target.value);
-              }}
-              placeholder="Alpha"
-            />
-            <label>Cell Instance Id:</label>
+            <label>Clone Sub Graph</label>
+            <label>Graph Id:</label>
             <input
               type="text"
               value={myGraph.id}
               onChange={(e) => {
-                stateHandler("cellInstanceID", e.target.value.split(","));
+                stateHandler(e.target.value);
               }}
               placeholder="1"
             />

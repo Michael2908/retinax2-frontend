@@ -26,6 +26,19 @@ label {
   border-radius: 100px;
   display: block; /* Make the buttons appear below each other */
 }
+.btn-group .sim {
+  background-color: rgb(172, 94, 94); 
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  padding: 10px 24px;
+  margin-top: 0.5%;
+  font-weight: bold;
+  cursor: pointer; /* Pointer/hand icon */
+  width: 90%; /* Set a width if needed */
+  height: 10%;
+  border-radius: 100px;
+  display: block; /* Make the buttons appear below each other */
+}
 
 .btn-group input {
   background-color: rgb(255, 255, 255); 

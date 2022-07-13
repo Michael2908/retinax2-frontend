@@ -49,7 +49,10 @@ const CreateConnection = (props) => {
   };
   const submitHandler = async (event) => {
     event.preventDefault();
-    addConnectionReq.sendRequest(myCell);
+    if (myCell.delay === "0" || myCell.delay === "1") {
+      addConnectionReq.sendRequest(myCell);
+    } else alert("Delay Must Be Either 0 Or 1. Your Entered " + myCell.delay);
+    // alert(addConnectionReq.error);
   };
 
   return (
@@ -85,7 +88,7 @@ const CreateConnection = (props) => {
               onChange={(e) => {
                 stateHandler("delay", e.target.value);
               }}
-              placeholder="Example: 12"
+              placeholder="Either 0 or 1"
             />
             <label>Input:</label>
             <input
