@@ -64,8 +64,3 @@ export const DeleteData = async (dataName, dataToUpdate) => {
   const URL = BE_URL + dataName;
   return await sendRequest("DELETE", URL, dataToUpdate);
 };
-
-export const CloneData = async (dataName) => {
-  const URL = BE_URL + dataName;
-  return await sendRequest("POST", URL);
-};

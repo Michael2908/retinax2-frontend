@@ -51,7 +51,7 @@ const CreateConnection = (props) => {
     event.preventDefault();
     if (myCell.delay === "0" || myCell.delay === "1") {
       addConnectionReq.sendRequest(myCell);
-    } else alert("Delay Must Be Either 0 Or 1. Your Entered " + myCell.delay);
+    } else alert("Delay Must Be Either 0 Or 1. You Entered " + myCell.delay);
     // alert(addConnectionReq.error);
   };
 

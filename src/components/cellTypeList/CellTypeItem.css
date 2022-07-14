@@ -33,12 +33,44 @@
 .cell-type-item-actions__add{
     color:lightgreen;
 }
+.cell-type-item-actions__add .tooltiptext{
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+.cell-type-item-actions__delete .tooltiptext{
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
 .cell-type-item-actions__add :hover{
     color:green;
+}
+.cell-type-item-actions__add:hover .tooltiptext{
+    visibility: visible;
 }
 .cell-type-item-actions__delete{
     color:red;
 }
 .cell-type-item-actions__delete :hover{
     color:darkred;
+}
+.cell-type-item-actions__delete:hover .tooltiptext{
+    visibility: visible;
 }

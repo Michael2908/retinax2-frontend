@@ -10,7 +10,6 @@ const DeleteCell = (props) => {
   const { closeWindow } = props;
 
   useEffect(() => {
-    console.log(deleteCellInstanceReq);
     if (
       deleteCellInstanceReq.status !== "COMPLETED" ||
       deleteCellInstanceReq.error
@@ -48,8 +47,7 @@ const DeleteCell = (props) => {
               }}
               placeholder="1"
             />
-            <br />
-            <br />
+            <br></br>
             <div className="accept">
               <button type="submit">Delete Cell</button>
             </div>
