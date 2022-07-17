@@ -7,7 +7,7 @@ import useHttp from "./shared/hooks/useHttp.jsx";
 import "./App.css";
 
 function App() {
-  const { sendRequest, data } = useHttp(getCellTypes);
+  const { sendRequest, data, error, status } = useHttp(getCellTypes);
   const addCellTypeReq = useHttp(addCellType);
 
   useEffect(() => {
@@ -16,29 +16,33 @@ function App() {
 
   useEffect(() => {
     if (!data) return;
-    const inCells = [];
-    const outCells = [];
-    data.forEach((cell) =>
-      cell.transformType === "INPUT_TO_ANALOG"
-        ? inCells.push(cell)
-        : outCells.push(cell)
-    );
+    if (error) console.log("Got Error");
+    console.log(status);
+    if (status === "COMPLETED") {
+      const inCells = [];
+      const outCells = [];
+      data.forEach((cell) =>
+        cell.transformType === "INPUT_TO_ANALOG"
+          ? inCells.push(cell)
+          : outCells.push(cell)
+      );
 
-    console.log(inCells.length);
+      console.log(inCells.length);
 
-    if (inCells.length === 0) {
-      console.log("got here");
-      const myCell = {
-        name: "InputCell",
-        transformType: "INPUT_TO_ANALOG",
-        createFunctionRequest: {
-          expression: "x",
-          variables: ["x"],
-        },
-      };
-      // addCellTypeReq.sendRequest(myCell);
-    } else return;
-  });
+      if (inCells.length === 0) {
+        console.log("got here");
+        const myCell = {
+          name: "InputCell",
+          transformType: "INPUT_TO_ANALOG",
+          createFunctionRequest: {
+            expression: "x",
+            variables: ["x"],
+          },
+        };
+        addCellTypeReq.sendRequest(myCell);
+      } else return;
+    }
+  }, [error, data, status]);
 
   return (
     <div className="app-container">
