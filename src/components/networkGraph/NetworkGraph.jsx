@@ -1,15 +1,9 @@
-import graphImade from "../../images/pngwing.png";
 import "./NetworkGraph.css";
 
 function NetworkGraph() {
   return (
-    <div className="main">
-      <img src={graphImade} alt="" />
-      <iframe
-        title="i"
-        // src="http://localhost:7474/browser/"
-        frameBorder="0"
-      ></iframe>
+    <div className="network-graph">
+      <iframe title="test" src="http://localhost:5005/"></iframe>
     </div>
   );
 }

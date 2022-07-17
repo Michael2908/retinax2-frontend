@@ -45,13 +45,11 @@ const sendRequest = async (sendType, url, dataToSend) => {
 export const GetData = async (dataName, queryData) => {
   const queryString = serialize(queryData);
   const URL = BE_URL + dataName + queryString;
-  console.log(URL);
   return await sendRequest("GET", URL, undefined);
 };
 
 export const AddData = async (dataToAdd, dataName) => {
   const URL = BE_URL + dataName;
-  console.log(URL);
   return await sendRequest("POST", URL, dataToAdd);
 };
 

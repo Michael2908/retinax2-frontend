@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "./components/menu/Menu.jsx";
 import NetworkGraph from "./components/networkGraph/NetworkGraph.jsx";
 import CellTypeList from "./components/cellTypeList/CellTypeList.jsx";
+import { getCellTypes, addCellType } from "./shared/services/CellService.jsx";
+import useHttp from "./shared/hooks/useHttp.jsx";
 import "./App.css";
 
 function App() {
+  const { sendRequest, data } = useHttp(getCellTypes);
+  const addCellTypeReq = useHttp(addCellType);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  useEffect(() => {
+    if (!data) return;
+    const inCells = [];
+    const outCells = [];
+    data.forEach((cell) =>
+      cell.transformType === "INPUT_TO_ANALOG"
+        ? inCells.push(cell)
+        : outCells.push(cell)
+    );
+
+    console.log(inCells.length);
+
+    if (inCells.length === 0) {
+      console.log("got here");
+      const myCell = {
+        name: "InputCell",
+        transformType: "INPUT_TO_ANALOG",
+        createFunctionRequest: {
+          expression: "x",
+          variables: ["x"],
+        },
+      };
+      // addCellTypeReq.sendRequest(myCell);
+    } else return;
+  });
+
   return (
     <div className="app-container">
       <header>
