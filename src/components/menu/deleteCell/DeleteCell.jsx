@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { deleteCellInstance } from "../../../shared/services/CellService.jsx";
-import "./DeleteCell.css";
 
 const DeleteCell = (props) => {
   const [myCell, setMyCell] = useState({});

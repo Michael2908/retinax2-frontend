@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { addCellType } from "../../../shared/services/CellService.jsx";
-import "./AddCellType.css";
+import RefreshContext from "../../../shared/store/RefreshContext.jsx";
 
 const AddCell = (props) => {
   const [myCell, setMyCell] = useState({ createFunctionRequest: {} });
+  const { setRefreshTypeList } = useContext(RefreshContext);
   const addCellTypeReq = useHttp(addCellType);
   const { closeWindow } = props;
 
   useEffect(() => {
     if (addCellTypeReq.status !== "COMPLETED" || addCellTypeReq.error) return;
+    setRefreshTypeList(true);
     closeWindow();
-  }, [addCellTypeReq.status, addCellTypeReq.error, closeWindow]);
+  }, [
+    addCellTypeReq.status,
+    addCellTypeReq.error,
+    closeWindow,
+    setRefreshTypeList,
+  ]);
 
   const stateHandler = (str, val) => {
     setMyCell((prevState) => {

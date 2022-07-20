@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { addConnection } from "../../../shared/services/CellService.jsx";
-import "./CreateConnection.css";
 
 const CreateConnection = (props) => {
   const [myCell, setMyCell] = useState({ sourceCell: {}, destinationCell: {} });

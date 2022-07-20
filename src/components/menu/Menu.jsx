@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import Spinner from "react-bootstrap/esm/Spinner.js";
 import AddCellType from "./addCellType/AddCellType.jsx";
 import CreateConnection from "./createConnection/CreateConnection.jsx";
 import CreateSubGraph from "./createSubGraph/CreateSubGraph.jsx";
 import CloneSubGraph from "./cloneSubGraph/CloneSubGraph.jsx";
 import SimulateGraph from "./simulateGraph/SimulateGraph.jsx";
 import DeleteCell from "./deleteCell/DeleteCell.jsx";
+import DeleteGraph from "./deleteGraph/DeleteGraph.jsx";
 import "./Menu.css";
 
 function Menu() {
@@ -39,6 +41,11 @@ function Menu() {
       case 4:
         return <DeleteCell closeWindow={closeWindow} />;
       case 5:
+        return <DeleteGraph closeWindow={closeWindow} />;
+      case 6:
+        alert("SHOWIMG GRAHPP!!!");
+        return;
+      case 7:
         return <SimulateGraph closeWindow={closeWindow} />;
       default:
         return <React.Fragment />;
@@ -65,7 +72,13 @@ function Menu() {
           <button name="4" onClick={btnOnClickHandler}>
             Delete Cell Instance
           </button>
-          <button className="sim" name="5" onClick={btnOnClickHandler}>
+          <button name="5" onClick={btnOnClickHandler}>
+            Delete Graph
+          </button>
+          <button name="6" onClick={btnOnClickHandler}>
+            Load Graph
+          </button>
+          <button className="sim" name="7" onClick={btnOnClickHandler}>
             Simulate
           </button>
         </div>

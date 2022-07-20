@@ -1,20 +1,18 @@
-import React, { useRef } from "react";
-import "./SimulateGraph.css";
+import React from "react";
 
 const SimulateCellItem = (props) => {
   const { index, cell, updateCell } = props;
 
-  const inputRef = useRef();
-  const inputChangeHandler = () =>
+  const inputChangeHandler = (event) =>
     updateCell(index, {
       ...cell,
-      userInput: inputRef.current.value.split(","),
+      userInput: event.target.value.split(","),
     });
 
   return (
     <>
       <label>Cell Id: {cell.id}</label>
-      <input ref={inputRef} onChange={inputChangeHandler} />
+      <input onChange={inputChangeHandler} />
     </>
   );
 };

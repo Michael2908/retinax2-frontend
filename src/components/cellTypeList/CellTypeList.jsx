@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import useHttp from "../../shared/hooks/useHttp.jsx";
 import { getCellTypes } from "../../shared/services/CellService.jsx";
+import RefreshContext from "../../shared/store/RefreshContext.jsx";
 import CellTypeItem from "./CellTypeItem.jsx";
 import "./CellTypeList.css";
 
 const CellTypeList = () => {
   const { sendRequest, data } = useHttp(getCellTypes);
-
+  const { refreshTypeList, setRefreshTypeList } = useContext(RefreshContext);
   const [cellTypes, setCellTypes] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,14 @@ const CellTypeList = () => {
   useEffect(() => {
     if (!data) return;
     setCellTypes(data);
-  }, [data]);
+    setRefreshTypeList(false);
+  }, [data, setRefreshTypeList]);
+
+  useEffect(() => {
+    if (refreshTypeList) {
+      sendRequest();
+    }
+  }, [refreshTypeList, sendRequest]);
 
   return (
     <div className="cell-type-list-container">

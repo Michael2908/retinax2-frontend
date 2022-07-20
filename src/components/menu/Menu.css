@@ -3,15 +3,11 @@ label {
   color: black;
 }
 
-.menu-bar{
-  height: 38%;
-}
-
 .menu-title{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 30px;
-  margin-left: 20%;
-  margin-top: 4%;
+  margin-left: 8%;
+  margin-top: 8px;
 }
 
 .btn-group button {
@@ -22,7 +18,7 @@ label {
   margin-top: 0.5%;
   cursor: pointer; /* Pointer/hand icon */
   width: 90%; /* Set a width if needed */
-  height: 10%;
+  height: 32px;
   border-radius: 100px;
   display: block; /* Make the buttons appear below each other */
 }
@@ -96,6 +92,11 @@ label {
   width: 25%; /* Set a width if needed */
 }
 
+.container .accept button:disabled{
+  background-color: gray;
+  color: black
+}
+
 
 .container label {
   color: white;
@@ -112,5 +113,12 @@ label {
   border-radius: 100px;
   width: 50%; /* Set a width if needed */
   display: block; /* Make the buttons appear below each other */
+}
+
+.sim-results{
+  font-size: large;
+  color: aliceblue;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 

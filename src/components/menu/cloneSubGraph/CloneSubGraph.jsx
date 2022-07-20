@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useHttp from "../../../shared/hooks/useHttp.jsx";
 import { cloneGraph } from "../../../shared/services/GraphService.jsx";
-import "./CloneSubGraph.css";
 
 const CreateSubGraph = (props) => {
   const [myGraph, setMyGraph] = useState({});
@@ -25,7 +23,6 @@ const CreateSubGraph = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    alert("I Clicked IT");
     cloneGraphReq.sendRequest(myGraph.val);
   };
 
@@ -37,6 +34,7 @@ const CreateSubGraph = (props) => {
             <label>Clone Sub Graph</label>
             <label>Graph Id:</label>
             <input
+              disabled={cloneGraphReq.status === "PENDING"}
               type="text"
               value={myGraph.id}
               onChange={(e) => {
@@ -47,7 +45,14 @@ const CreateSubGraph = (props) => {
             <br />
             <br />
             <div className="accept">
-              <button type="submit">Create Sub Graph</button>
+              <button
+                disabled={cloneGraphReq.status === "PENDING"}
+                type="submit"
+              >
+                {cloneGraphReq.status === "PENDING"
+                  ? "This May Take Few Minutes..."
+                  : "Create Sub Graph"}
+              </button>
             </div>
           </div>
         </div>

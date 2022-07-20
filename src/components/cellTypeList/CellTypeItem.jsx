@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CellTypeItem.css";
 import useHttp from "../../shared/hooks/useHttp.jsx";
 import {
@@ -7,10 +7,12 @@ import {
 } from "../../shared/services/CellService.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import RefreshContext from "../../shared/store/RefreshContext";
 
 const CellTypeItem = (props) => {
   const { cellType } = props;
   const addCellInstanceReq = useHttp(addCellInstance);
+  const { setRefreshTypeList } = useContext(RefreshContext);
   const deleteCellTypeReq = useHttp(deleteCellType);
 
   const addCellClickHandler = (event) => {
@@ -19,6 +21,7 @@ const CellTypeItem = (props) => {
   };
   const deleteCellTypeClickHandler = (event) => {
     event.preventDefault();
+    setRefreshTypeList(true);
     deleteCellTypeReq.sendRequest(cellType.id);
   };
 
