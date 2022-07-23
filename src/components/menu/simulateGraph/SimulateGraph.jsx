@@ -43,10 +43,18 @@ const SimulateGraph = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
     const mySim = { userInput: {}, maxTime: "", outputCells: [] };
+    mySim.maxTime = 1;
     const outputCells = inputRef.current.value.split(",");
-    mySim.maxTime = cells.inCells[0].userInput.length;
-    const mySimGraph = [];
     for (const cell of cells.inCells) {
+      if (cell.userInput?.length > mySim.maxTime)
+        mySim.maxTime = cell.userInput.length;
+    }
+    const mySimGraph = [];
+    console.log("maxtime =", mySim.maxTime);
+    for (const cell of cells.inCells) {
+      if (!cell.userInput) {
+        cell.userInput = Array(mySim.maxTime).fill(0);
+      }
       if (cell.userInput.length !== mySim.maxTime) {
         alert("All Input Variables Have To Be The Same Length ");
         return;
@@ -79,7 +87,7 @@ const SimulateGraph = (props) => {
                     .map((result) => result.value)
                     .join(",");
                   return (
-                    <li className="sim-results">
+                    <li key={key} className="sim-results">
                       Cell Id:&nbsp;{key}&nbsp; Values: &nbsp; {values}
                     </li>
                   );

@@ -61,8 +61,6 @@ const AddCell = (props) => {
             }}
             placeholder="Example: A"
           />
-          <br />
-          <br />
           <label>Function Expression:</label>
           <input
             type="text"
@@ -72,8 +70,6 @@ const AddCell = (props) => {
             }}
             placeholder="x + y + z"
           />
-          <br />
-          <br />
           <label>Variables:</label>
           <input
             type="text"
@@ -84,8 +80,6 @@ const AddCell = (props) => {
             }}
             placeholder="x, y, z"
           />
-          <br />
-          <br />
           <label>Transform Type:</label>
           <div className="row">
             <button
@@ -133,6 +127,17 @@ const AddCell = (props) => {
               }}
             >
               Digital to Digital
+            </button>
+            <button
+              type="button"
+              className={
+                myCell.transformType === "INPUT_TO_ANALOG" ? "btn-active" : ""
+              }
+              onClick={() => {
+                stateHandler("transformType", "INPUT_TO_ANALOG");
+              }}
+            >
+              Input to Analog
             </button>
           </div>
           <br />

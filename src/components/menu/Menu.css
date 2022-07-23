@@ -56,9 +56,10 @@ label {
   position: fixed;
   border-radius: 100px;
   top: 15%;
-  left: 37%;
+  left: 30%;
   width: 50%;
-  height: auto;
+  min-height: auto;
+  max-height: 750px;
   background-color: rgba(49, 89, 137, 0.811);
   justify-content: center;
   align-items: center;
@@ -72,15 +73,22 @@ label {
   height: 100%;
   max-width: 640px;
 }
+.container {
+  overflow-y: auto;
+  min-height: auto;
+  max-height: 700px;
+}
 
 .container .row button {
   background-color: rgb(255, 255, 255); 
   border: 1px solid rgb(0, 0, 0);
   border-radius: 100px;
   color: black;
+  vertical-align: bottom;
   margin-right: 1%;
   padding: 10px 24px; /* Some padding */
-  width: 20%; /* Set a width if needed */
+  height: 90px;
+  width: 15%; /* Set a width if needed */
 }
 
 .container .accept button {
