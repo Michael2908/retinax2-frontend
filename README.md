@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Create file .env and add the line " REACT_APP_BE_URL='http://localhost:8080/' " into it
+## Create file .env in the main project folder and add the line " REACT_APP_BE_URL='http://localhost:8080/' " into it
 
 ## Available Scripts
 
