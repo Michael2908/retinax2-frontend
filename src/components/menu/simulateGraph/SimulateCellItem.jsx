@@ -12,7 +12,10 @@ const SimulateCellItem = (props) => {
   return (
     <>
       <label>Cell Id: {cell.id}</label>
-      <input onChange={inputChangeHandler} />
+      <input
+        onChange={inputChangeHandler}
+        placeholder="Enter Data or Leave Empty"
+      />
     </>
   );
 };

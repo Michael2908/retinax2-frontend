@@ -66,7 +66,7 @@ const CreateConnection = (props) => {
               onChange={(e) => {
                 stateSourceHandler("id", e.target.value);
               }}
-              placeholder="1"
+              placeholder="Enter Source Cell Instance Id"
             />
             <br />
             <br />
@@ -77,7 +77,7 @@ const CreateConnection = (props) => {
               onChange={(e) => {
                 stateDestinationHandler("id", e.target.value);
               }}
-              placeholder="2"
+              placeholder="Enter Destination Cell Instance Id"
             />
             <label>Delay:</label>
             <input
@@ -86,7 +86,7 @@ const CreateConnection = (props) => {
               onChange={(e) => {
                 stateHandler("delay", e.target.value);
               }}
-              placeholder="Either 0 or 1"
+              placeholder="Enter Delay Time, Either 0 or 1"
             />
             <label>Input:</label>
             <input
@@ -95,7 +95,7 @@ const CreateConnection = (props) => {
               onChange={(e) => {
                 stateHandler("inputFunctionVariable", e.target.value);
               }}
-              placeholder="Example: x"
+              placeholder="Input Destination variable, Example: x"
             />
             <br />
             <br />

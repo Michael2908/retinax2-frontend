@@ -43,7 +43,7 @@ const DeleteCell = (props) => {
               onChange={(e) => {
                 stateHandler("cellInstanceID", e.target.value);
               }}
-              placeholder="1"
+              placeholder="Enter Cell Instance Id"
             />
             <br></br>
             <div className="accept">

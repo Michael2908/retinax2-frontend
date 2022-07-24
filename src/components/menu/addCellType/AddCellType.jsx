@@ -59,7 +59,7 @@ const AddCell = (props) => {
             onChange={(e) => {
               stateHandler("name", e.target.value);
             }}
-            placeholder="Example: A"
+            placeholder="Enter Cell Type Name"
           />
           <label>Function Expression:</label>
           <input
@@ -68,7 +68,7 @@ const AddCell = (props) => {
             onChange={(e) => {
               stateFunctionHandler("expression", e.target.value);
             }}
-            placeholder="x + y + z"
+            placeholder="Enter Expression, example: x + y + z"
           />
           <label>Variables:</label>
           <input
@@ -78,7 +78,7 @@ const AddCell = (props) => {
               const variables = e.target.value.replace(/\s/g, "").split(",");
               stateFunctionHandler("variables", variables);
             }}
-            placeholder="x, y, z"
+            placeholder="Enter Expression variable, example: x, y, z"
           />
           <label>Transform Type:</label>
           <div className="row">

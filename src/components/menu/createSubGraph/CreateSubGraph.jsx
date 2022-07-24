@@ -39,7 +39,7 @@ const CreateSubGraph = (props) => {
               onChange={(e) => {
                 stateHandler("name", e.target.value);
               }}
-              placeholder="Alpha"
+              placeholder="Enter Subgraph Name"
             />
             <label>Cell Instance Id:</label>
             <input
@@ -48,7 +48,7 @@ const CreateSubGraph = (props) => {
               onChange={(e) => {
                 stateHandler("cellInstanceID", e.target.value.split(","));
               }}
-              placeholder="1"
+              placeholder="Enter Input Cell Instances Id"
             />
             <br />
             <br />

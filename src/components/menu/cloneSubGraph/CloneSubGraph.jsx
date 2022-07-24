@@ -40,7 +40,7 @@ const CreateSubGraph = (props) => {
               onChange={(e) => {
                 stateHandler(e.target.value);
               }}
-              placeholder="1"
+              placeholder="Enter Subgraph Id to Clone"
             />
             <br />
             <br />

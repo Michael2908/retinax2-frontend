@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Spinner from "react-bootstrap/esm/Spinner.js";
 import AddCellType from "./addCellType/AddCellType.jsx";
 import CreateConnection from "./createConnection/CreateConnection.jsx";
 import CreateSubGraph from "./createSubGraph/CreateSubGraph.jsx";
@@ -8,6 +7,7 @@ import SimulateGraph from "./simulateGraph/SimulateGraph.jsx";
 import DeleteCell from "./deleteCell/DeleteCell.jsx";
 import DeleteGraph from "./deleteGraph/DeleteGraph.jsx";
 import "./Menu.css";
+import DownloadSubgraph from "./downloadSubgraph/DownloadSubgraph.jsx";
 
 function Menu() {
   const [windowsStatus, setWindowsStatus] = useState([false, false, false]);
@@ -43,8 +43,7 @@ function Menu() {
       case 5:
         return <DeleteGraph closeWindow={closeWindow} />;
       case 6:
-        alert("SHOWIMG GRAHPP!!!");
-        return;
+        return <DownloadSubgraph closeWindow={closeWindow} />;
       case 7:
         return <SimulateGraph closeWindow={closeWindow} />;
       default:
@@ -76,7 +75,7 @@ function Menu() {
             Delete Graph
           </button>
           <button name="6" onClick={btnOnClickHandler}>
-            Load Graph
+            Download Graph Json
           </button>
           <button className="sim" name="7" onClick={btnOnClickHandler}>
             Simulate
