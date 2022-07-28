@@ -10,7 +10,11 @@ const AddCell = (props) => {
   const { closeWindow } = props;
 
   useEffect(() => {
-    if (addCellTypeReq.status !== "COMPLETED" || addCellTypeReq.error) return;
+    if (addCellTypeReq.status !== "COMPLETED") return;
+    if (addCellTypeReq.error) {
+      alert("Input Error!");
+      return;
+    }
     setRefreshTypeList(true);
     closeWindow();
   }, [

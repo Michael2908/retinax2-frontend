@@ -8,8 +8,11 @@ const CreateConnection = (props) => {
   const { closeWindow } = props;
 
   useEffect(() => {
-    if (addConnectionReq.status !== "COMPLETED" || addConnectionReq.error)
+    if (addConnectionReq.status !== "COMPLETED") return;
+    if (addConnectionReq.error) {
+      alert("Error Has Occured!");
       return;
+    }
     closeWindow();
   }, [addConnectionReq.status, addConnectionReq.error, closeWindow]);
 

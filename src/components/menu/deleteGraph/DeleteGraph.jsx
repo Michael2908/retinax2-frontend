@@ -8,7 +8,11 @@ const DeleteCell = (props) => {
   const { closeWindow } = props;
 
   useEffect(() => {
-    if (deleteGraphReq.status !== "COMPLETED" || deleteGraphReq.error) return;
+    if (deleteGraphReq.status !== "COMPLETED") return;
+    if (deleteGraphReq.error) {
+      alert("Graph Does Not Exist!");
+      return;
+    }
     closeWindow();
   }, [deleteGraphReq.status, deleteGraphReq.error, closeWindow]);
 

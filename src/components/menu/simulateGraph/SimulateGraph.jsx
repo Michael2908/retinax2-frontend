@@ -50,7 +50,6 @@ const SimulateGraph = (props) => {
         mySim.maxTime = cell.userInput.length;
     }
     const mySimGraph = [];
-    console.log("maxtime =", mySim.maxTime);
     for (const cell of cells.inCells) {
       if (!cell.userInput) {
         cell.userInput = Array(mySim.maxTime).fill(0);
@@ -68,7 +67,11 @@ const SimulateGraph = (props) => {
     sendSimRequest(mySim);
   };
 
-  if (simResults)
+  if (simResults) {
+    if (Object.keys(simResults).length === 0) {
+      alert("Wrong Output Cell");
+      return;
+    }
     return (
       <>
         <form
@@ -101,6 +104,7 @@ const SimulateGraph = (props) => {
         </form>
       </>
     );
+  }
 
   return (
     <form className="main-popup" onSubmit={submitHandler}>

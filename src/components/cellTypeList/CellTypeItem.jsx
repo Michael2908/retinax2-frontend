@@ -50,8 +50,8 @@ const CellTypeItem = (props) => {
           href="/"
           onClick={deleteCellTypeClickHandler}
         >
-          <FontAwesomeIcon icon={faTrashAlt} />
-          <span className="tooltiptext">Delete Cell Type</span>
+          {/* <FontAwesomeIcon icon={faTrashAlt} />
+          <span className="tooltiptext">Delete Cell Type</span> */}
         </a>
       </div>
     </li>
